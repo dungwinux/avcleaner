@@ -163,7 +163,8 @@ namespace AVObfuscator {
         }
 
         bool BeginSourceFileAction(clang::CompilerInstance &Compiler) override {
-            llvm::outs() << "Processing file " << Compiler.getSourceManager().getFileEntryForID(Compiler.getSourceManager().getMainFileID())->getName() << '\n';
+            // https://github.com/llvm/llvm-project/pull/74910
+            llvm::outs() << "Processing file " << Compiler.getSourceManager().getFileEntryRefForID(Compiler.getSourceManager().getMainFileID())->getName() << '\n';
 
             return true;
         }
@@ -172,7 +173,7 @@ namespace AVObfuscator {
 
             clang::SourceManager &SM = ASTRewriter.getSourceMgr();
 
-            std::string FileName = SM.getFileEntryForID(SM.getMainFileID())->getName().data();
+            std::string FileName = SM.getFileEntryRefForID(SM.getMainFileID())->getName().data();
             llvm::errs() << "** EndSourceFileAction for: " << FileName << "\n";
 
             // Now emit the rewritten buffer.

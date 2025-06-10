@@ -15,7 +15,7 @@ namespace Utils {
      * @param Length desired length of the generated string.
      * @return a random string of size Length.
      */
-    extern std::string randomString(unsigned long Length);
+    extern std::string randomString(std::string::size_type Length);
 
     /**
      * used to replace a string literal by a variable's identifier

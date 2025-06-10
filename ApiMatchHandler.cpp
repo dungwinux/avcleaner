@@ -325,7 +325,7 @@ void ApiMatchHandler::rewriteApiToSyscall(const clang::CallExpr *pExpr, clang::A
         //insert some declaration at the beginning of the translation unit
         ASTRewriter->InsertText(FirstFunctionDeclLoc, buffer.str(), false, true);
     } else {
-        llvm::errs() << "File could not be opened in " << std::filesystem::current_path(); // Report error
+        llvm::errs() << "File could not be opened in " << std::filesystem::current_path().string(); // Report error
         llvm::errs() << "Error code: " << strerror(errno); // Get some info as to why
     }
 }

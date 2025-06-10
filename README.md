@@ -14,6 +14,17 @@ The implementation is rather complex and this domain in software development is 
 
 ## Build
 
+#### tl;dr local Windows build
+
+Prerequsites: LLVM Clang in PATH, ninja
+
+```
+cmake -B build -G Ninja
+cmake --build build
+```
+
+#### Docker (untested)
+
 ```
 docker build . -t avcleaner
 docker run -v ~/dev/scrt/avcleaner:/home/toto -it avcleaner bash #adapt ~/dev/scrt/avcleaner to the path where you cloned avcleaner
