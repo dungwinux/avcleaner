@@ -53,6 +53,15 @@ CommandLine Error: Option 'non-global-value-max-name-size' registered more than 
 
 In case you encounter this error, please use `CMakeLists_archlinux.txt` instead of `CMakeLists.txt` and it should go away. 
 
+You might also get DIA SDK error if you try to compile using CMake and Clang release:
+
+```
+ninja: error: 'C:/Program Files (x86)/Microsoft Visual Studio/2019/Professional/DIA SDK/lib/amd64/diaguids.lib', needed by 'avcleaner.bin.exe', missing and no known rule to make it
+```
+
+This is due to Clang CMake recipe hard-coding path for it.
+See link for details: https://github.com/llvm/llvm-project/issues/86250
+To fix, find LLVMExports.cmake in `$LLVM_LIBRARY_DIRS\cmake\llvm` (i.e. D:\a\llvm\lib\cmake\llvm). Then apply `LLVMExports.cmake.patch`.
 
 ## Contributors
 

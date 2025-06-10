@@ -63,12 +63,3 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter -fno-strict-aliasi
 
 target_link_libraries(avcleaner.bin LLVMSupport clangTooling)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-# You might get DIA SDK error if you try to compile using CMake
-# ```
-# ninja: error: 'C:/Program Files (x86)/Microsoft Visual Studio/2019/Professional/DIA SDK/lib/amd64/diaguids.lib', needed by 'avcleaner.bin.exe', missing and no known rule to make it
-# ```
-# This is due to Clang CMake recipe hard-coding path for it
-# See link for details: https://github.com/llvm/llvm-project/issues/86250
-# To fix, go to `$LLVM_LIBRARY_DIRS\cmake\llvm\LLVMExports.cmake` (i.e. D:\a\llvm\lib\cmake\llvm\LLVMExports.cmake)
-# Then apply `LLVMExports.cmake.patch`
